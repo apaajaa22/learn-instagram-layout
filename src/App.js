@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import Content from "./pages/Content"
+import Header from "./Component/Header"
+import Footer from "./Component/Footer"
+import DirectMessage from "./pages/DirectMessage"
+import Search from "./pages/Search"
+import Profile from "./pages/Profile"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+      }}
+    >
+      <Router>
+        <Header />
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            overflow: "scroll",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Switch>
+            <Route exact path="/">
+              <Content />
+            </Route>
+            <Route path="/direct-message">
+              <DirectMessage />
+            </Route>
+            <Route path="/search">
+              <Search />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
